@@ -1,0 +1,29 @@
+{
+    "name": "niklan/dadata-api",
+    "description": "PHP SDK for Dadata API.",
+    "authors": [
+        {
+            "name": "Nikita Malyshev (Niklan)",
+            "email": "hello@niklan.net",
+            "homepage": "https://niklan.net",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3.0",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Niklan\\Dadata\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Niklan\\Dadata\\Tests\\": "tests"
+        }
+    }
+}
