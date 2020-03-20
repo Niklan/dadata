@@ -2,7 +2,9 @@
 
 namespace Niklan\Dadata;
 
-use Psr\Http\Client\ClientInterface;
+use Http\Client\Common\PluginClient;
+use Http\Client\HttpClient;
+use Http\Message\RequestFactory;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -13,28 +15,28 @@ final class ApiClient {
   /**
    * The HTTP client.
    *
-   * @var \Psr\Http\Client\ClientInterface
+   * @var \Http\Client\Common\PluginClient
    */
-  protected $client;
+  protected $httpClient;
 
   /**
-   * The auth credentials.
+   * The request factory.
    *
-   * @var \Niklan\Dadata\Auth
+   * @var \Http\Message\RequestFactory
    */
-  protected $auth;
+  protected $requestFactory;
 
   /**
    * Constructs a new ApiClient object.
    *
-   * @param \Psr\Http\Client\ClientInterface $client
-   *   The HTTP client.
-   * @param \Niklan\Dadata\Auth $auth
-   *   The auth credentials.
+   * @param \Http\Client\HttpClient $client
+   *   The HTTP httpClient.
+   * @param \Http\Message\RequestFactory $request_factory
+   *   The request factory.
    */
-  public function __construct(ClientInterface $client, Auth $auth) {
-    $this->client = $client;
-    $this->auth = $auth;
+  public function __construct(HttpClient $client, RequestFactory $request_factory) {
+    $this->httpClient = new PluginClient($client);
+    $this->requestFactory = $request_factory;
   }
 
   /**
@@ -46,11 +48,12 @@ final class ApiClient {
    * @return \Psr\Http\Message\ResponseInterface
    *   The response.
    *
-   * @throws \Psr\Http\Client\ClientExceptionInterface
+   * @throws \Http\Client\Exception
    */
-  public function sendRequest(RequestInterface $request) {
-    $request = $this->auth->authenticate($request);
-    return $this->client->sendRequest($request);
+  public function sendRequestWithAuth(RequestInterface $request) {
+//    $request = $auth->authenticate($request);
+    $this->requestFactory->createRequest('GET', 'http://google.ru');
+    return $this->httpClient->sendRequest($request);
   }
 
 }

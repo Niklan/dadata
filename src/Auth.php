@@ -32,7 +32,7 @@ final class Auth implements Authentication {
    * @param string $token
    *   The API key.
    * @param string|NULL $secret
-   *   The secret key. Required for 'Clean' API calls.
+   *   The secret key. Required for 'Cleaner' API calls.
    */
   public function __construct(string $token, string $secret = NULL) {
     $this->token = $token;
