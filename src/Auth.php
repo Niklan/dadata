@@ -40,6 +40,20 @@ final class Auth implements Authentication {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function authenticate(RequestInterface $request) {
+    $token_header = sprintf('Token %s', $this->getToken());
+    $request = $request->withHeader('Authorization', $token_header);
+
+    if ($this->getSecret()) {
+      $request = $request->withHeader('X-Secret', $this->getSecret());
+    }
+
+    return $request;
+  }
+
+  /**
    * Gets API key.
    *
    * @return string
@@ -57,20 +71,6 @@ final class Auth implements Authentication {
    */
   public function getSecret(): ?string {
     return $this->secret;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function authenticate(RequestInterface $request) {
-    $token_header = sprintf('Token %s', $this->getToken());
-    $request = $request->withHeader('Authorization', $token_header);
-
-    if ($this->getSecret()) {
-      $request = $request->withHeader('X-Secret', $this->getSecret());
-    }
-
-    return $request;
   }
 
 }

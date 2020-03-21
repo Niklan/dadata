@@ -1,11 +1,6 @@
 <?php
 
-namespace Niklan\Dadata\Clean;
-
-use Niklan\Dadata\Cleaner\CleanerRequestBase;
-use Niklan\Dadata\RequestBase;
-use Psr\Http\Message\StreamInterface;
-use Psr\Http\Message\UriInterface;
+namespace Niklan\Dadata\Request\Cleaner;
 
 /**
  * Provides address clean request.
@@ -15,5 +10,9 @@ use Psr\Http\Message\UriInterface;
 final class AddressCleaner extends CleanerRequestBase {
 
   protected $endpoint = '/api/v1/clean/address';
+
+  public function clean(string $address) {
+    return $this->sendRequest($address);
+  }
 
 }
