@@ -1,6 +1,6 @@
 <?php
 
-namespace Niklan\Dadata\Request;
+namespace Niklan\DaData\Request;
 
 interface RequestInterface {
 

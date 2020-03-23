@@ -1,6 +1,6 @@
 <?php
 
-namespace Niklan\Dadata;
+namespace Niklan\DaData;
 
 use Http\Message\Authentication;
 use Psr\Http\Message\RequestInterface;

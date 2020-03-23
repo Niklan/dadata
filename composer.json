@@ -1,6 +1,6 @@
 {
     "name": "niklan/dadata-api",
-    "description": "PHP SDK for Dadata API.",
+    "description": "PHP SDK for DaData API.",
     "authors": [
         {
             "name": "Nikita Malyshev (Niklan)",
@@ -16,7 +16,8 @@
         "php-http/client-implementation": "^1.0",
         "php-http/message-factory": "^1.0",
         "php-http/discovery": "^1.0",
-        "php-http/message": "^1.0"
+        "php-http/message": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5",
@@ -25,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Niklan\\Dadata\\": "src"
+            "Niklan\\DaData\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Niklan\\Dadata\\Tests\\": "tests"
+            "Niklan\\DaData\\Tests\\": "tests"
         }
     }
 }

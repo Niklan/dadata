@@ -1,11 +1,11 @@
 <?php
 
-namespace Niklan\Dadata\Tests\Clean;
+namespace Niklan\DaData\Tests\Clean;
 
 use Http\Mock\Client;
-use Niklan\Dadata\DadataClient;
-use Niklan\Dadata\Auth;
-use Niklan\Dadata\Request\Cleaner\AddressCleaner;
+use Niklan\DaData\DaDataClient;
+use Niklan\DaData\Auth;
+use Niklan\DaData\Request\Cleaner\AddressCleaner;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -13,7 +13,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Provides test for AddressCleaner clean request.
  */
-final class AddressTest extends TestCase {
+final class AddressCleanerTest extends TestCase {
 
   public function testRequest(): void {
     $response_body = $this->prophesize(StreamInterface::class);
@@ -26,7 +26,7 @@ final class AddressTest extends TestCase {
     $dadata_auth = new Auth('dadata-token', 'dadata-secret');
     $http_client = new Client();
     $http_client->addResponse($default_response->reveal());
-    $dadata_client = new DadataClient($http_client, $dadata_auth);
+    $dadata_client = new DaDataClient($http_client, $dadata_auth);
     $address_cleaner = new AddressCleaner($dadata_client);
     $response = $address_cleaner->clean('мск сухонска 11/-89');
     $this->assertSame(200, $response->getStatusCode());

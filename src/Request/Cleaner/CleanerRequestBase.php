@@ -1,15 +1,17 @@
 <?php
 
-namespace Niklan\Dadata\Request\Cleaner;
+namespace Niklan\DaData\Request\Cleaner;
 
-use Niklan\Dadata\Request\RequestBase;
+use Niklan\DaData\Request\RequestBase;
 
+/**
+ * Provides abstract implementation for clean request.
+ */
 abstract class CleanerRequestBase extends RequestBase {
 
+  /**
+   * {@inheritdoc}
+   */
   protected $baseUrl = 'https://cleaner.dadata.ru';
-
-  protected function sendRequest(string $body) {
-    return $this->getDadataClient()->sendRequest($this->getRequestUri(), $body);
-  }
 
 }

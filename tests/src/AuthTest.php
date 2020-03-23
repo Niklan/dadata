@@ -1,14 +1,14 @@
 <?php
 
-namespace Niklan\Dadata\Tests;
+namespace Niklan\DaData\Tests;
 
-use Niklan\Dadata\Auth;
+use Niklan\DaData\Auth;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Provides testing for auth object.
  *
- * @coversDefaultClass \Niklan\Dadata\Auth
+ * @coversDefaultClass \Niklan\DaData\Auth
  */
 final class AuthTest extends TestCase {
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Niklan\Dadata\Request;
+namespace Niklan\DaData\Request;
 
-use Niklan\Dadata\DadataClient;
+use Niklan\DaData\DaDataClient;
 
 /**
- * Provides default implementation for dadata request.
+ * Provides default implementation for DaData request.
  */
 abstract class RequestBase implements RequestInterface {
 
@@ -26,23 +26,43 @@ abstract class RequestBase implements RequestInterface {
   /**
    * The DaData client.
    *
-   * @var \Niklan\Dadata\DadataClient
+   * @var \Niklan\DaData\DaDataClient
    */
   protected $dadataClient;
 
-  public function __construct(DadataClient $client) {
+  public function __construct(DaDataClient $client) {
     $this->dadataClient = $client;
+  }
+
+  /**
+   * Sends request to API.
+   *
+   * @param string $body
+   *   The request payload.
+   *
+   * @return \Psr\Http\Message\ResponseInterface
+   * @throws \Http\Client\Exception
+   */
+  protected function sendRequest(string $body) {
+    return $this->getDaDataClient()->sendRequest($this->getRequestUri(), $body);
   }
 
   /**
    * Gets DaData client.
    *
-   * @return \Niklan\Dadata\DadataClient
+   * @return \Niklan\DaData\DaDataClient
+   *   The DaData client.
    */
-  protected function getDadataClient(): DadataClient {
+  protected function getDaDataClient(): DaDataClient {
     return $this->dadataClient;
   }
 
+  /**
+   * Gets complete URI for response.
+   *
+   * @return string
+   *   The API endpoint URI.
+   */
   protected function getRequestUri(): string {
     return sprintf('%s%s', $this->baseUrl, $this->endpoint);
   }
