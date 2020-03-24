@@ -36,7 +36,7 @@ final class ResultSet implements IteratorAggregate {
   /**
    * The result items.
    *
-   * @var \Niklan\DaData\Data\DataFactoryInterface[]
+   * @var \Niklan\DaData\Data\DataInterface[]
    */
   protected $resultItems = [];
 

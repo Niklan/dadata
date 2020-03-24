@@ -8,7 +8,7 @@ namespace Niklan\DaData\Data;
 final class EmailFactory implements DataFactoryInterface {
 
   /**
-   * {@iheritdoc}
+   * {@inheritdoc}
    */
   public function create(array $data): DataInterface {
     return new Email($data);
