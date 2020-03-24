@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Provides value object for standardized email.
  */
-final class Email {
+final class Email implements DataInterface {
 
   /**
    * Represents the 'PERSONAL' email type.
@@ -210,7 +210,7 @@ final class Email {
     ];
 
     if (!in_array($type, $allowed_types)) {
-      throw new InvalidArgumentException(sprintf("The %s email type is not allowed value."));
+      throw new InvalidArgumentException(sprintf("The %s email type is not allowed value.", $type));
     }
 
     $this->type = $type;

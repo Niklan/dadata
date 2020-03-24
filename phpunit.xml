@@ -2,7 +2,7 @@
 <phpunit colors="true">
   <testsuites>
     <testsuite name="DaData API Test Suite">
-      <directory suffix="Test.php">./tests</directory>
+      <directory suffix="Test.php">./tests/src</directory>
     </testsuite>
   </testsuites>
   <filter>

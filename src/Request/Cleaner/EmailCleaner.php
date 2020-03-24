@@ -2,8 +2,13 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
+use Niklan\DaData\Data\EmailFactory;
+use Niklan\DaData\Result\ResultSet;
+
 /**
  * Provides email clean request.
+ *
+ * @see https://dadata.ru/api/clean/email/
  */
 final class EmailCleaner extends CleanerRequestBase {
 
@@ -18,11 +23,12 @@ final class EmailCleaner extends CleanerRequestBase {
    * @param string $email
    *   The email address to clean.
    *
-   * @return \Psr\Http\Message\ResponseInterface
+   * @return \Niklan\DaData\Result\ResultSet
    * @throws \Http\Client\Exception
    */
   public function clean(string $email) {
-    return $this->sendRequest($email);
+    $response = $this->sendRequest($email);
+    return ResultSet::createFromResponse($response, new EmailFactory());
   }
 
 }

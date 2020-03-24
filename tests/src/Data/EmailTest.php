@@ -14,6 +14,13 @@ final class EmailTest extends TestCase {
 
   /**
    * Test value storage in value object.
+   *
+   * @covers ::getSource
+   * @covers ::getEmail
+   * @covers ::getLocal
+   * @covers ::getDomain
+   * @covers ::getType
+   * @covers ::getQc
    */
   public function testValueObject() {
     $email_response = file_get_contents(__DIR__ . '/../../fixtures/clean-email-response.json');

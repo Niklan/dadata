@@ -5,6 +5,6 @@ namespace Niklan\DaData\Data;
 /**
  * Provides value object for standardized address.
  */
-final class Address {
+final class Address implements DataInterface {
 
 }
