@@ -16,6 +16,6 @@ interface DataFactoryInterface {
    * @return \Niklan\DaData\Data\DataInterface
    *   The standardized value object.
    */
-  public function create(array $data): DataInterface;
+  public static function fromData(array $data): DataInterface;
 
 }

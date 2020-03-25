@@ -37,14 +37,15 @@ abstract class RequestBase implements RequestInterface {
   /**
    * Sends request to API.
    *
-   * @param string $body
+   * @param array $payload
    *   The request payload.
    *
    * @return \Psr\Http\Message\ResponseInterface
    * @throws \Http\Client\Exception
    */
-  protected function sendRequest(string $body) {
-    return $this->getDaDataClient()->sendRequest($this->getRequestUri(), $body);
+  protected function sendRequest(array $payload) {
+    $json = json_encode($payload);
+    return $this->getDaDataClient()->sendRequest($this->getRequestUri(), $json);
   }
 
   /**

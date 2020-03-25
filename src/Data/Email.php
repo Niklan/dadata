@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Provides value object for standardized email.
  */
-final class Email implements DataInterface {
+final class Email implements DataInterface, DataFactoryInterface {
 
   /**
    * Represents the 'PERSONAL' email type.
@@ -84,12 +84,9 @@ final class Email implements DataInterface {
   protected $qc;
 
   /**
-   * Constructs a new Email object.
-   *
-   * @param array $data
-   *   The value from DaData response.
+   * {@inheritdoc}
    */
-  public function __construct(array $data) {
+  public static function fromData(array $data): DataInterface {
     $required_values = ['source', 'email', 'local', 'domain', 'type', 'qc'];
     foreach ($required_values as $required_value) {
       if (!in_array($required_value, array_keys($data))) {
@@ -97,12 +94,15 @@ final class Email implements DataInterface {
       }
     }
 
-    $this->setSource($data['source']);
-    $this->setEmail($data['email']);
-    $this->setLocal($data['local']);
-    $this->setDomain($data['domain']);
-    $this->setType($data['type']);
-    $this->setQc($data['qc']);
+    $instance = new static();
+    $instance->setSource($data['source']);
+    $instance->setEmail($data['email']);
+    $instance->setLocal($data['local']);
+    $instance->setDomain($data['domain']);
+    $instance->setType($data['type']);
+    $instance->setQc($data['qc']);
+
+    return $instance;
   }
 
   /**

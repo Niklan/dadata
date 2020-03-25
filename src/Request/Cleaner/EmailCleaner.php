@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
-use Niklan\DaData\Data\EmailFactory;
+use Niklan\DaData\Data\Email;
 use Niklan\DaData\Result\ResultSet;
 
 /**
@@ -20,15 +20,17 @@ final class EmailCleaner extends CleanerRequestBase {
   /**
    * Clean provided address.
    *
-   * @param string $email
-   *   The email address to clean.
+   * @param array $emails
+   *   An array with emails to clean.
    *
    * @return \Niklan\DaData\Result\ResultSet
+   *   The results.
+   *
    * @throws \Http\Client\Exception
    */
-  public function clean(string $email) {
-    $response = $this->sendRequest($email);
-    return ResultSet::createFromResponse($response, new EmailFactory());
+  public function clean(array $emails) {
+    $response = $this->sendRequest($emails);
+    return ResultSet::createFromResponse($response, Email::class);
   }
 
 }

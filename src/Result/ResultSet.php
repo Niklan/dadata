@@ -45,20 +45,22 @@ final class ResultSet implements IteratorAggregate {
    *
    * @param \Psr\Http\Message\ResponseInterface $response
    *   The response from API.
-   * @param \Niklan\DaData\Data\DataFactoryInterface $data_factory
-   *   The data factory for result values.
+   * @param string $data_factory
+   *   The data factory class for result values. Must implement
+   *   DataFactoryInterface.
    *
    * @return \Niklan\DaData\Result\ResultSet
    *   The instance with results.
    */
-  public static function createFromResponse(ResponseInterface $response, DataFactoryInterface $data_factory): ResultSet {
+  public static function createFromResponse(ResponseInterface $response, string $data_factory): ResultSet {
+    assert(is_subclass_of($data_factory, DataFactoryInterface::class));
     $instance = new static();
     $instance->responseStatusCode = $response->getStatusCode();
     $instance->responseReasonPhrase = $response->getReasonPhrase();
     $instance->responseBodyContent = $response->getBody()->getContents();
     $data = json_decode($instance->responseBodyContent, TRUE);
     foreach ($data as $datum) {
-      $instance->resultItems[] = $data_factory->create($datum);
+      $instance->resultItems[] = $data_factory::fromData($datum);
     }
     return $instance;
   }
