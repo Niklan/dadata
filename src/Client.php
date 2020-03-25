@@ -9,7 +9,7 @@ use Http\Message\RequestFactory;
 /**
  * Provides provider for an API requests.
  */
-final class DaDataClient {
+final class Client {
 
   /**
    * The HTTP client.
@@ -33,7 +33,7 @@ final class DaDataClient {
   protected $auth;
 
   /**
-   * Constructs a new DaDataClient object.
+   * Constructs a new Client object.
    *
    * @param \Http\Client\HttpClient $client
    *   The HTTP httpClient.

@@ -3,9 +3,9 @@
 namespace Niklan\DaData\Tests\Request;
 
 use Http\Client\HttpClient;
-use Http\Mock\Client;
+use Http\Mock\Client as MockHttpClient;
 use Niklan\DaData\Auth;
-use Niklan\DaData\DaDataClient;
+use Niklan\DaData\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -39,7 +39,7 @@ abstract class FixtureResponseTestCase extends TestCase {
   /**
    * The API client.
    *
-   * @var \Niklan\DaData\DaDataClient
+   * @var \Niklan\DaData\Client
    */
   protected $daDataClient;
 
@@ -49,11 +49,11 @@ abstract class FixtureResponseTestCase extends TestCase {
   public function setUp(): void {
     parent::setUp();
     $this->daDataAuth = new Auth('dadata-token', 'dadata-secret');
-    $this->httpClient = new Client();
+    $this->httpClient = new MockHttpClient();
     $fixture_content = file_get_contents(static::$fixture);
     $response = $this->prophesizeResponse(200, 'Success.', $fixture_content);
     $this->httpClient->setDefaultResponse($response);
-    $this->daDataClient = new DaDataClient($this->getHttpClient(), $this->getDaDataAuth());
+    $this->daDataClient = new Client($this->getHttpClient(), $this->getDaDataAuth());
   }
 
   /**
@@ -103,10 +103,10 @@ abstract class FixtureResponseTestCase extends TestCase {
   /**
    * Gets DaData API client.
    *
-   * @return \Niklan\DaData\DaDataClient
+   * @return \Niklan\DaData\Client
    *   The API client.
    */
-  public function getDaDataClient(): DaDataClient {
+  public function getDaDataClient(): Client {
     return $this->daDataClient;
   }
 

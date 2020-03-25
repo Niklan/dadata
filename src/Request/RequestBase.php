@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Request;
 
-use Niklan\DaData\DaDataClient;
+use Niklan\DaData\Client;
 
 /**
  * Provides default implementation for DaData request.
@@ -26,11 +26,11 @@ abstract class RequestBase implements RequestInterface {
   /**
    * The DaData client.
    *
-   * @var \Niklan\DaData\DaDataClient
+   * @var \Niklan\DaData\Client
    */
   protected $dadataClient;
 
-  public function __construct(DaDataClient $client) {
+  public function __construct(Client $client) {
     $this->dadataClient = $client;
   }
 
@@ -51,10 +51,10 @@ abstract class RequestBase implements RequestInterface {
   /**
    * Gets DaData client.
    *
-   * @return \Niklan\DaData\DaDataClient
+   * @return \Niklan\DaData\Client
    *   The DaData client.
    */
-  protected function getDaDataClient(): DaDataClient {
+  protected function getDaDataClient(): Client {
     return $this->dadataClient;
   }
 
