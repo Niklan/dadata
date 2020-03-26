@@ -2,20 +2,20 @@
 
 namespace Niklan\DaData\Tests\Request\Cleaner;
 
-use Niklan\DaData\Request\Cleaner\EmailCleaner;
+use Niklan\DaData\Request\Cleaner\PhoneCleaner;
 use Niklan\DaData\Tests\Request\FixtureResponseTestCase;
 
 /**
- * Provides test for email clean request.
+ * Provides test for phone clean request.
  *
- * @coversDefaultClass \Niklan\DaData\Request\Cleaner\EmailCleaner
+ * @coversDefaultClass \Niklan\DaData\Request\Cleaner\PhoneCleaner
  */
-final class EmailCleanerTest extends FixtureResponseTestCase {
+final class PhoneCleanerTest extends FixtureResponseTestCase {
 
   /**
    * {@inheritdoc}
    */
-  public static $fixture = __DIR__ . '/../../../fixtures/clean-email-response.json';
+  public static $fixture = __DIR__ . '/../../../fixtures/clean-phone-response.json';
 
   /**
    * Tests sending request.
@@ -23,13 +23,13 @@ final class EmailCleanerTest extends FixtureResponseTestCase {
    * @covers ::clean
    */
   public function testRequest(): void {
-    $address_cleaner = new EmailCleaner($this->getDaDataClient());
-    $result_set = $address_cleaner->clean(['serega@yandex/ru']);
+    $address_cleaner = new PhoneCleaner($this->getDaDataClient());
+    $result_set = $address_cleaner->clean(['раб 846)231.60.14 *139']);
     $this->assertSame(200, $result_set->getResponseStatusCode());
     $this->assertSame(1, $result_set->getResultCount());
     $items = $result_set->getResultItems();
     $first = array_shift($items);
-    $this->assertSame('serega@yandex/ru', $first->getSource());
+    $this->assertSame('раб 846)231.60.14 *139', $first->getSource());
   }
 
 }

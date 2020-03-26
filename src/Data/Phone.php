@@ -86,6 +86,87 @@ final class Phone implements DataInterface, DataFactoryInterface {
   protected $phone;
 
   /**
+   * The phone country code.
+   *
+   * @var int
+   */
+  protected $countryCode;
+
+  /**
+   * The phone city code.
+   *
+   * @var int
+   */
+  protected $cityCode;
+
+  /**
+   * The phone number.
+   *
+   * @var int
+   */
+  protected $number;
+
+  /**
+   * The extension number.
+   *
+   * @var int
+   */
+  protected $extension;
+
+  /**
+   * The mobile operator.
+   *
+   * @var string
+   */
+  protected $provider;
+
+  /**
+   * The country name.
+   *
+   * @var string
+   */
+  protected $country;
+
+  /**
+   * The region name.
+   *
+   * @var string
+   */
+  protected $region;
+
+  /**
+   * The city name.
+   *
+   * @var string
+   */
+  protected $city;
+
+  /**
+   * The city timezone.
+   *
+   * The timezone for city if phone number is Russian, the country timezone if
+   * phone is foreign. If country has multiple timezones value will be minimum
+   * and maximum separated by '/'. E.g.: 'UTC+5/UTC+6'.
+   *
+   * @var string
+   */
+  protected $timezone;
+
+  /**
+   * The quality code conflict with address.
+   *
+   * @var int
+   */
+  protected $qcConflict;
+
+  /**
+   * The quality code.
+   *
+   * @var int
+   */
+  protected $qc;
+
+  /**
    * {@inheritdoc}
    */
   public static function fromData(array $data): DataInterface {
@@ -115,6 +196,18 @@ final class Phone implements DataInterface, DataFactoryInterface {
     $instance->setSource($data['source']);
     $instance->setType($data['type']);
     $instance->setPhone($data['phone']);
+    $instance->setCountryCode($data['country_code']);
+    $instance->setCityCode($data['city_code']);
+    $instance->setNumber($data['number']);
+    $instance->setExtension($data['extension']);
+    $instance->setProvider($data['provider']);
+    $instance->setCountry($data['country']);
+    $instance->setRegion($data['region']);
+    $instance->setCity($data['city']);
+    $instance->setTimezone($data['timezone']);
+    $instance->setQcConflict($data['qc_conflict']);
+    $instance->setQc($data['qc']);
+
     return $instance;
   }
 
@@ -187,6 +280,226 @@ final class Phone implements DataInterface, DataFactoryInterface {
    */
   protected function setPhone(string $phone): void {
     $this->phone = $phone;
+  }
+
+  /**
+   * Get country code.
+   *
+   * @return int
+   *   The country code for phone number.
+   */
+  public function getCountryCode(): int {
+    return $this->countryCode;
+  }
+
+  /**
+   * Sets country code.
+   *
+   * @param int $countryCode
+   *   The country code for phone number.
+   */
+  protected function setCountryCode(int $countryCode): void {
+    $this->countryCode = $countryCode;
+  }
+
+  /**
+   * Get city code.
+   *
+   * @return int
+   *   The city code for phone number.
+   */
+  public function getCityCode(): int {
+    return $this->cityCode;
+  }
+
+  /**
+   * Sets city code.
+   *
+   * @param int $cityCode
+   *   The city code for phone number.
+   */
+  public function setCityCode(int $cityCode): void {
+    $this->cityCode = $cityCode;
+  }
+
+  /**
+   * Gets phone number.
+   *
+   * @return int
+   *   The phone number.
+   */
+  public function getNumber(): int {
+    return $this->number;
+  }
+
+  /**
+   * Sets phone number.
+   *
+   * @param int $number
+   *   The phone number.
+   */
+  protected function setNumber(int $number): void {
+    $this->number = $number;
+  }
+
+  /**
+   * Gets extension number.
+   *
+   * @return int
+   *   The phone extension.
+   */
+  public function getExtension(): int {
+    return $this->extension;
+  }
+
+  /**
+   * Sets extension number.
+   *
+   * @param int $extension
+   *   The phone extension.
+   */
+  protected function setExtension(int $extension): void {
+    $this->extension = $extension;
+  }
+
+  /**
+   * Gets provider.
+   *
+   * @return string
+   *   The mobile operator name.
+   */
+  public function getProvider(): string {
+    return $this->provider;
+  }
+
+  /**
+   * Sets provider.
+   *
+   * @param string $provider
+   *   The mobile operator name.
+   */
+  protected function setProvider(string $provider): void {
+    $this->provider = $provider;
+  }
+
+  /**
+   * Gets phone country name.
+   *
+   * @return string
+   *   The country name.
+   */
+  public function getCountry(): string {
+    return $this->country;
+  }
+
+  /**
+   * Sets phone country name.
+   *
+   * @param string $country
+   *   The country name.
+   */
+  protected function setCountry(string $country): void {
+    $this->country = $country;
+  }
+
+  /**
+   * Gets phone region name.
+   *
+   * @return string
+   *   The region name.
+   */
+  public function getRegion(): string {
+    return $this->region;
+  }
+
+  /**
+   * Sets phone region name.
+   *
+   * @param string $region
+   *   The region name.
+   */
+  protected function setRegion(string $region): void {
+    $this->region = $region;
+  }
+
+  /**
+   * Gets phone city assigment.
+   *
+   * @return string
+   *   The city name.
+   */
+  public function getCity(): string {
+    return $this->city;
+  }
+
+  /**
+   * Sets phone city assigment.
+   *
+   * @param string $city
+   *   The city name.
+   */
+  protected function setCity(string $city): void {
+    $this->city = $city;
+  }
+
+  /**
+   * Gets phone city or country timezone.
+   *
+   * @return string
+   *   The UTC timezone.
+   */
+  public function getTimezone(): string {
+    return $this->timezone;
+  }
+
+  /**
+   * Sets phone city or country timezone.
+   *
+   * @param string $timezone
+   *   The UTC timezone.
+   */
+  protected function setTimezone(string $timezone): void {
+    $this->timezone = $timezone;
+  }
+
+  /**
+   * Gets phone quality code conflict.
+   *
+   * @return int
+   *   The quality code.
+   */
+  public function getQcConflict(): int {
+    return $this->qcConflict;
+  }
+
+  /**
+   * Sets phone quality code conflict.
+   *
+   * @param int $qcConflict
+   *   The quality code.
+   */
+  protected function setQcConflict(int $qcConflict): void {
+    $this->qcConflict = $qcConflict;
+  }
+
+  /**
+   * Gets phone quality code.
+   *
+   * @return int
+   *   The quality code.
+   */
+  public function getQc(): int {
+    return $this->qc;
+  }
+
+  /**
+   * Sets phone quality code.
+   *
+   * @param int $qc
+   *   The quality code.
+   */
+  public function setQc(int $qc): void {
+    $this->qc = $qc;
   }
 
 }

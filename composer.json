@@ -1,6 +1,7 @@
 {
     "name": "niklan/dadata",
     "description": "PHP SDK for DaData API.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Nikita Malyshev (Niklan)",
