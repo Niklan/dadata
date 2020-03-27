@@ -2,6 +2,7 @@
 
 namespace Niklan\DaData\Request;
 
-interface RequestInterface {
+interface RequestInterface
+{
 
 }

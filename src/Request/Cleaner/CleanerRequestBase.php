@@ -7,11 +7,12 @@ use Niklan\DaData\Request\RequestBase;
 /**
  * Provides abstract implementation for clean request.
  */
-abstract class CleanerRequestBase extends RequestBase {
+abstract class CleanerRequestBase extends RequestBase
+{
 
-  /**
-   * {@inheritdoc}
-   */
-  protected $baseUrl = 'https://cleaner.dadata.ru';
+    /**
+     * {@inheritdoc}
+     */
+    protected $baseUrl = 'https://cleaner.dadata.ru';
 
 }
