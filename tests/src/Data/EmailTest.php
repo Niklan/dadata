@@ -2,7 +2,9 @@
 
 namespace Niklan\DaData\Tests\Data;
 
+use InvalidArgumentException;
 use Niklan\DaData\Data\Email;
+use Niklan\DaData\Exception\MissingRequiredDataValueException;
 
 /**
  * Provides test for email value object.
@@ -36,6 +38,19 @@ final class EmailTest extends DataTestCase
         $this->assertSame('yandex.ru', $email->getDomain());
         $this->assertSame(Email::TYPE_PERSONAL, $email->getType());
         $this->assertSame('4', $email->getQc());
+    }
+
+    /**
+     * Test creating value object with missing required value.
+     *
+     * @covers ::fromData
+     */
+    public function testMissingRequiredValue()
+    {
+        $value = $this->loadFixtureJsonAsArray()[0];
+        unset($value['source']);
+        $this->expectException(MissingRequiredDataValueException::class);
+        Email::fromData($value);
     }
 
     /**

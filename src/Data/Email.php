@@ -3,6 +3,7 @@
 namespace Niklan\DaData\Data;
 
 use InvalidArgumentException;
+use Niklan\DaData\Exception\MissingRequiredDataValueException;
 
 /**
  * Provides value object for standardized email.
@@ -47,42 +48,42 @@ final class Email implements DataInterface, DataFactoryInterface
      *
      * @var string
      */
-    protected $source;
+    private $source;
 
     /**
      * The cleaned email.
      *
      * @var string
      */
-    protected $email;
+    private $email;
 
     /**
      * The email local name or username.
      *
      * @var string
      */
-    protected $local;
+    private $local;
 
     /**
      * The domain of email.
      *
      * @var string
      */
-    protected $domain;
+    private $domain;
 
     /**
      * The address type.
      *
      * @var string
      */
-    protected $type;
+    private $type;
 
     /**
      * The quality code.
      *
      * @var string
      */
-    protected $qc;
+    private $qc;
 
     /**
      * {@inheritdoc}
@@ -92,7 +93,7 @@ final class Email implements DataInterface, DataFactoryInterface
         $required_values = ['source', 'email', 'local', 'domain', 'type', 'qc'];
         foreach ($required_values as $required_value) {
             if (!in_array($required_value, array_keys($data))) {
-                throw new InvalidArgumentException(sprintf("The %s is missing", $required_values));
+                throw new MissingRequiredDataValueException($required_value);
             }
         }
 
@@ -124,7 +125,7 @@ final class Email implements DataInterface, DataFactoryInterface
      * @param string $source
      *   The email source.
      */
-    protected function setSource(string $source): void
+    private function setSource(string $source): void
     {
         $this->source = $source;
     }
@@ -146,7 +147,7 @@ final class Email implements DataInterface, DataFactoryInterface
      * @param string $email
      *   The formatted email address.
      */
-    protected function setEmail(string $email): void
+    private function setEmail(string $email): void
     {
         $this->email = $email;
     }
@@ -168,7 +169,7 @@ final class Email implements DataInterface, DataFactoryInterface
      * @param string $local
      *   The email local name.
      */
-    protected function setLocal(string $local): void
+    private function setLocal(string $local): void
     {
         $this->local = $local;
     }
@@ -190,7 +191,7 @@ final class Email implements DataInterface, DataFactoryInterface
      * @param string $domain
      *   The email domain.
      */
-    protected function setDomain(string $domain): void
+    private function setDomain(string $domain): void
     {
         $this->domain = $domain;
     }
@@ -245,7 +246,7 @@ final class Email implements DataInterface, DataFactoryInterface
      * @param string $qc
      *   The email quality code.
      */
-    protected function setQc(string $qc): void
+    private function setQc(string $qc): void
     {
         $this->qc = $qc;
     }

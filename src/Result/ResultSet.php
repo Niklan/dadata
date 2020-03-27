@@ -2,16 +2,13 @@
 
 namespace Niklan\DaData\Result;
 
-use ArrayIterator;
-use IteratorAggregate;
 use Niklan\DaData\Data\DataFactoryInterface;
-use Niklan\DaData\Data\DataInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Provides result storage.
  */
-final class ResultSet implements IteratorAggregate
+final class ResultSet
 {
 
     /**
@@ -19,28 +16,28 @@ final class ResultSet implements IteratorAggregate
      *
      * @var int
      */
-    protected $responseStatusCode;
+    private $responseStatusCode;
 
     /**
      * The response reason phrase.
      *
      * @var string
      */
-    protected $responseReasonPhrase;
+    private $responseReasonPhrase;
 
     /**
      * The response body content.
      *
      * @var string
      */
-    protected $responseBodyContent;
+    private $responseBodyContent;
 
     /**
      * The result items.
      *
-     * @var DataInterface[]
+     * @var ResultItems
      */
-    protected $resultItems = [];
+    private $resultItems = [];
 
     /**
      * Creates a ResultSet instance from response.
@@ -69,31 +66,12 @@ final class ResultSet implements IteratorAggregate
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getIterator(): ArrayIterator
-    {
-        return new ArrayIterator($this->resultItems);
-    }
-
-    /**
-     * Gets count of results.
-     *
-     * @return int
-     *   The amount of result items.
-     */
-    public function getResultCount(): int
-    {
-        return count($this->resultItems);
-    }
-
-    /**
      * Gets result items.
      *
-     * @return array
+     * @return ResultItems
      *   The result items.
      */
-    public function getResultItems(): array
+    public function getResultItems(): ResultItems
     {
         return $this->resultItems;
     }

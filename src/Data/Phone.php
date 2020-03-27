@@ -3,6 +3,7 @@
 namespace Niklan\DaData\Data;
 
 use InvalidArgumentException;
+use Niklan\DaData\Exception\MissingRequiredDataValueException;
 
 /**
  * Provides value object for standardized email.
@@ -70,77 +71,77 @@ final class Phone implements DataInterface, DataFactoryInterface
      *
      * @var string
      */
-    protected $source;
+    private $source;
 
     /**
      * The phone type.
      *
      * @var string
      */
-    protected $type;
+    private $type;
 
     /**
      * The standardized phone number.
      *
      * @var string
      */
-    protected $phone;
+    private $phone;
 
     /**
      * The phone country code.
      *
      * @var int
      */
-    protected $countryCode;
+    private $countryCode;
 
     /**
      * The phone city code.
      *
      * @var int
      */
-    protected $cityCode;
+    private $cityCode;
 
     /**
      * The phone number.
      *
      * @var int
      */
-    protected $number;
+    private $number;
 
     /**
      * The extension number.
      *
      * @var int
      */
-    protected $extension;
+    private $extension;
 
     /**
      * The mobile operator.
      *
      * @var string
      */
-    protected $provider;
+    private $provider;
 
     /**
      * The country name.
      *
      * @var string
      */
-    protected $country;
+    private $country;
 
     /**
      * The region name.
      *
      * @var string
      */
-    protected $region;
+    private $region;
 
     /**
      * The city name.
      *
      * @var string
      */
-    protected $city;
+    private $city;
 
     /**
      * The city timezone.
@@ -151,21 +152,21 @@ final class Phone implements DataInterface, DataFactoryInterface
      *
      * @var string
      */
-    protected $timezone;
+    private $timezone;
 
     /**
      * The quality code conflict with address.
      *
      * @var int
      */
-    protected $qcConflict;
+    private $qcConflict;
 
     /**
      * The quality code.
      *
      * @var int
      */
-    protected $qc;
+    private $qc;
 
     /**
      * {@inheritdoc}
@@ -190,7 +191,7 @@ final class Phone implements DataInterface, DataFactoryInterface
         ];
         foreach ($required_values as $required_value) {
             if (!in_array($required_value, array_keys($data))) {
-                throw new InvalidArgumentException(sprintf("The %s is missing", $required_values));
+                throw new MissingRequiredDataValueException($required_value);
             }
         }
 
@@ -230,7 +231,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $source
      *   The source value.
      */
-    protected function setSource(string $source): void
+    private function setSource(string $source): void
     {
         $this->source = $source;
     }
@@ -252,7 +253,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $type
      *   The phone type.
      */
-    protected function setType(string $type): void
+    private function setType(string $type): void
     {
         $allowed_values = [
             self::TYPE_MOBILE,
@@ -285,7 +286,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $phone
      *   The standardized phone number.
      */
-    protected function setPhone(string $phone): void
+    private function setPhone(string $phone): void
     {
         $this->phone = $phone;
     }
@@ -307,7 +308,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param int $countryCode
      *   The country code for phone number.
      */
-    protected function setCountryCode(int $countryCode): void
+    private function setCountryCode(int $countryCode): void
     {
         $this->countryCode = $countryCode;
     }
@@ -351,7 +352,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param int $number
      *   The phone number.
      */
-    protected function setNumber(int $number): void
+    private function setNumber(int $number): void
     {
         $this->number = $number;
     }
@@ -373,7 +374,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param int $extension
      *   The phone extension.
      */
-    protected function setExtension(int $extension): void
+    private function setExtension(int $extension): void
     {
         $this->extension = $extension;
     }
@@ -395,7 +396,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $provider
      *   The mobile operator name.
      */
-    protected function setProvider(string $provider): void
+    private function setProvider(string $provider): void
     {
         $this->provider = $provider;
     }
@@ -417,7 +418,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $country
      *   The country name.
      */
-    protected function setCountry(string $country): void
+    private function setCountry(string $country): void
     {
         $this->country = $country;
     }
@@ -439,7 +440,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $region
      *   The region name.
      */
-    protected function setRegion(string $region): void
+    private function setRegion(string $region): void
     {
         $this->region = $region;
     }
@@ -461,7 +462,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $city
      *   The city name.
      */
-    protected function setCity(string $city): void
+    private function setCity(string $city): void
     {
         $this->city = $city;
     }
@@ -483,7 +484,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param string $timezone
      *   The UTC timezone.
      */
-    protected function setTimezone(string $timezone): void
+    private function setTimezone(string $timezone): void
     {
         $this->timezone = $timezone;
     }
@@ -505,7 +506,7 @@ final class Phone implements DataInterface, DataFactoryInterface
      * @param int $qcConflict
      *   The quality code.
      */
-    protected function setQcConflict(int $qcConflict): void
+    private function setQcConflict(int $qcConflict): void
     {
         $this->qcConflict = $qcConflict;
     }

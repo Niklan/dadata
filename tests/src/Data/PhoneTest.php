@@ -3,6 +3,7 @@
 namespace Niklan\DaData\Tests\Data;
 
 use Niklan\DaData\Data\Phone;
+use Niklan\DaData\Exception\MissingRequiredDataValueException;
 
 /**
  * Provides test for phone value object.
@@ -51,6 +52,19 @@ final class PhoneTest extends DataTestCase
         $this->assertSame('UTC+4', $phone->getTimezone());
         $this->assertSame(0, $phone->getQcConflict());
         $this->assertSame(0, $phone->getQc());
+    }
+
+    /**
+     * Test creating value object with missing required value.
+     *
+     * @covers ::fromData
+     */
+    public function testMissingRequiredValue()
+    {
+        $value = $this->loadFixtureJsonAsArray()[0];
+        unset($value['source']);
+        $this->expectException(MissingRequiredDataValueException::class);
+        Phone::fromData($value);
     }
 
     /**

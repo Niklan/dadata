@@ -13,8 +13,7 @@ $client = new Client($http_client, $dadata_auth);
 $email_cleaner = new EmailCleaner($client);
 $result_set = $email_cleaner->clean(['serega@yandex/ru']);
 if ($result_set->getResponseStatusCode() == 200) {
-  $result_items = $result_set->getResultItems();
-  $first_result = array_shift($result_items);
+  $first_result = $result_set->getResultItems()->first();
   $first_result->getEmail(); // serega@yandex.ru
 }
 ```
