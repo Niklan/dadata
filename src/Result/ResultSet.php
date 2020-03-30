@@ -59,8 +59,9 @@ final class ResultSet
         $instance->responseReasonPhrase = $response->getReasonPhrase();
         $instance->responseBodyContent = $response->getBody()->getContents();
         $data = json_decode($instance->responseBodyContent, true);
+        $instance->resultItems = new ResultItems();
         foreach ($data as $datum) {
-            $instance->resultItems[] = $data_factory::fromData($datum);
+            $instance->resultItems->add($data_factory::fromData($datum));
         }
         return $instance;
     }

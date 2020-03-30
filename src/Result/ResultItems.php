@@ -3,6 +3,7 @@
 namespace Niklan\DaData\Result;
 
 use ArrayIterator;
+use Countable;
 use InvalidArgumentException;
 use IteratorAggregate;
 use Niklan\DaData\Data\DataInterface;
@@ -10,7 +11,7 @@ use Niklan\DaData\Data\DataInterface;
 /**
  * Value object for store and iterate thought result items.
  */
-final class ResultItems implements IteratorAggregate
+final class ResultItems implements IteratorAggregate, Countable
 {
 
     /**
@@ -71,4 +72,11 @@ final class ResultItems implements IteratorAggregate
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function count(): int
+    {
+        return count($this->items);
+    }
 }

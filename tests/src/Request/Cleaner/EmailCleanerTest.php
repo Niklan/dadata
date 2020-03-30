@@ -28,10 +28,8 @@ final class EmailCleanerTest extends FixtureResponseTestCase
         $address_cleaner = new EmailCleaner($this->getDaDataClient());
         $result_set = $address_cleaner->clean(['serega@yandex/ru']);
         $this->assertSame(200, $result_set->getResponseStatusCode());
-        $this->assertSame(1, $result_set->getResultCount());
-        $items = $result_set->getResultItems();
-        $first = array_shift($items);
-        $this->assertSame('serega@yandex/ru', $first->getSource());
+        $this->assertSame(1, $result_set->getResultItems()->count());
+        $this->assertSame('serega@yandex/ru', $result_set->getResultItems()->first()->getSource());
     }
 
 }

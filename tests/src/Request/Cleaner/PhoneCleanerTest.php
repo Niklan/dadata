@@ -28,10 +28,8 @@ final class PhoneCleanerTest extends FixtureResponseTestCase
         $address_cleaner = new PhoneCleaner($this->getDaDataClient());
         $result_set = $address_cleaner->clean(['раб 846)231.60.14 *139']);
         $this->assertSame(200, $result_set->getResponseStatusCode());
-        $this->assertSame(1, $result_set->getResultCount());
-        $items = $result_set->getResultItems();
-        $first = array_shift($items);
-        $this->assertSame('раб 846)231.60.14 *139', $first->getSource());
+        $this->assertSame(1, $result_set->getResultItems()->count());
+        $this->assertSame('раб 846)231.60.14 *139', $result_set->getResultItems()->first()->getSource());
     }
 
 }
