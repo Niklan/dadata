@@ -16,7 +16,7 @@ final class BirthDateTest extends DataTestCase
     /**
      * {@inheritdoc}
      */
-    public static $fixture = __DIR__ . '/../../fixtures/clean-birthdate-response.json';
+    protected $fixture = __DIR__ . '/../../fixtures/clean-birthdate-response.json';
 
     /**
      * Test value storage in value object.

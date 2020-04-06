@@ -15,7 +15,7 @@ abstract class DataTestCase extends TestCase
      *
      * @var string
      */
-    public static $fixture;
+    protected $fixture;
 
     /**
      * Loads fixture JSON value and returns as assoc array.
@@ -25,7 +25,7 @@ abstract class DataTestCase extends TestCase
      */
     protected function loadFixtureJsonAsArray(): array
     {
-        $fixture_content = file_get_contents(static::$fixture);
+        $fixture_content = file_get_contents($this->fixture);
         return json_decode($fixture_content, true);
     }
 

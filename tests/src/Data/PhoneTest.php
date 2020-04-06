@@ -16,7 +16,7 @@ final class PhoneTest extends DataTestCase
     /**
      * {@inheritdoc}
      */
-    public static $fixture = __DIR__ . '/../../fixtures/clean-phone-response.json';
+    protected $fixture = __DIR__ . '/../../fixtures/clean-phone-response.json';
 
     /**
      * Test value storage in value object.

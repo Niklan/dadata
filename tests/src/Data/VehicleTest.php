@@ -2,36 +2,38 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\Passport;
+use Niklan\DaData\Data\Vehicle;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
 
 /**
- * Provides test for passport value object.
+ * Provides test for vehicle value object.
  *
- * @coversDefaultClass \Niklan\DaData\Data\Passport
+ * @coversDefaultClass \Niklan\DaData\Data\Vehicle
  */
-final class PassportTest extends DataTestCase
+final class VehicleTest extends DataTestCase
 {
 
     /**
      * {@inheritdoc}
      */
-    protected $fixture = __DIR__ . '/../../fixtures/clean-passport-response.json';
+    protected $fixture = __DIR__ . '/../../fixtures/clean-vehicle-response.json';
 
     /**
      * Test value storage in value object.
      *
      * @covers ::getSource
-     * @covers ::getSeries
-     * @covers ::getNumber
+     * @covers ::getResult
+     * @covers ::getBrand
+     * @covers ::getModel
      * @covers ::getQc
      */
     public function testValidValueObject()
     {
-        $object = Passport::fromData($this->loadFixtureJsonAsArray()[0]);
-        $this->assertSame('4509 235857', $object->getSource());
-        $this->assertSame('45 09', $object->getSeries());
-        $this->assertSame('235857', $object->getNumber());
+        $object = Vehicle::fromData($this->loadFixtureJsonAsArray()[0]);
+        $this->assertSame('форд фокус', $object->getSource());
+        $this->assertSame('FORD FOCUS', $object->getResult());
+        $this->assertSame('FORD', $object->getBrand());
+        $this->assertSame('FOCUS', $object->getModel());
         $this->assertSame('0', $object->getQc());
     }
 
@@ -45,7 +47,7 @@ final class PassportTest extends DataTestCase
         $value = $this->loadFixtureJsonAsArray()[0];
         unset($value['source']);
         $this->expectException(MissingRequiredDataValueException::class);
-        Passport::fromData($value);
+        Vehicle::fromData($value);
     }
 
     /**
@@ -55,8 +57,8 @@ final class PassportTest extends DataTestCase
      */
     public function testFactory()
     {
-        $object = Passport::fromData($this->loadFixtureJsonAsArray()[0]);
-        $this->assertInstanceOf(Passport::class, $object);
+        $object = Vehicle::fromData($this->loadFixtureJsonAsArray()[0]);
+        $this->assertInstanceOf(Vehicle::class, $object);
     }
 
 }

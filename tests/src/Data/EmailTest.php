@@ -17,7 +17,7 @@ final class EmailTest extends DataTestCase
     /**
      * {@inheritdoc}
      */
-    public static $fixture = __DIR__ . '/../../fixtures/clean-email-response.json';
+    protected $fixture = __DIR__ . '/../../fixtures/clean-email-response.json';
 
     /**
      * Test value storage in value object.
