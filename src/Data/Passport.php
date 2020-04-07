@@ -7,7 +7,7 @@ use Niklan\DaData\Exception\MissingRequiredDataValueException;
 /**
  * Value object for passport information.
  */
-final class Passport implements DataInterface, DataFactoryInterface
+final class Passport implements DataInterface
 {
 
     /**
@@ -39,45 +39,23 @@ final class Passport implements DataInterface, DataFactoryInterface
     private $qc;
 
     /**
-     * {@inheritDoc}
+     * Constructs a new Passport object.
+     *
+     * @param array $data
+     *   The data to store.
      */
-    public static function fromData(array $data): DataInterface
+    public function __construct(array $data)
     {
-        $required_values = ['source', 'series', 'number', 'qc'];
-        foreach ($required_values as $required_value) {
-            if (!in_array($required_value, array_keys($data))) {
-                throw new MissingRequiredDataValueException($required_value);
+        foreach (['source', 'series', 'number', 'qc'] as $required_property) {
+            if (!isset($data[$required_property])) {
+                throw new MissingRequiredDataValueException($required_property);
             }
         }
 
-        $instance = new static();
-        $instance->setSource($data['source']);
-        $instance->setSeries($data['series']);
-        $instance->setNumber($data['number']);
-        $instance->setQc($data['qc']);
-        return $instance;
-    }
-
-    /**
-     * Sets passport source.
-     *
-     * @param string $source
-     *   The passport source.
-     */
-    private function setSource(string $source): void
-    {
-        $this->source = $source;
-    }
-
-    /**
-     * Sets quality code.
-     *
-     * @param string $qc
-     *   The passport quality code.
-     */
-    private function setQc(string $qc): void
-    {
-        $this->qc = $qc;
+        $this->source = $data['source'];
+        $this->series = $data['series'];
+        $this->number = $data['number'];
+        $this->qc = $data['qc'];
     }
 
     /**
@@ -122,28 +100,6 @@ final class Passport implements DataInterface, DataFactoryInterface
     public function getNumber(): string
     {
         return $this->number;
-    }
-
-    /**
-     * Sets number.
-     *
-     * @param string $number
-     *   The passport number.
-     */
-    private function setNumber(string $number): void
-    {
-        $this->number = $number;
-    }
-
-    /**
-     * Sets series.
-     *
-     * @param string $series
-     *   The passport series.
-     */
-    private function setSeries(string $series): void
-    {
-        $this->series = $series;
     }
 
 }

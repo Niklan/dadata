@@ -37,7 +37,7 @@ final class PhoneTest extends DataTestCase
      */
     public function testValidValueObject()
     {
-        $phone = Phone::fromData($this->loadFixtureJsonAsArray()[0]);
+        $phone = new Phone($this->loadFixtureJsonAsArray()[0]);
         $this->assertSame('раб 846)231.60.14 *139', $phone->getSource());
         $this->assertSame(Phone::TYPE_STATIONARY, $phone->getType());
         $this->assertSame('+7 846 231-60-14 доб. 139', $phone->getPhone());
@@ -56,26 +56,13 @@ final class PhoneTest extends DataTestCase
 
     /**
      * Test creating value object with missing required value.
-     *
-     * @covers ::fromData
      */
     public function testMissingRequiredValue()
     {
         $value = $this->loadFixtureJsonAsArray()[0];
         unset($value['source']);
         $this->expectException(MissingRequiredDataValueException::class);
-        Phone::fromData($value);
-    }
-
-    /**
-     * Test factory for value object.
-     *
-     * @covers ::fromData
-     */
-    public function testFactory()
-    {
-        $phone = Phone::fromData($this->loadFixtureJsonAsArray()[0]);
-        $this->assertInstanceOf(Phone::class, $phone);
+        new Phone($value);
     }
 
 }

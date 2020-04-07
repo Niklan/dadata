@@ -7,7 +7,7 @@ use Niklan\DaData\Exception\MissingRequiredDataValueException;
 /**
  * Value object for store birth date.
  */
-final class BirthDate implements DataFactoryInterface, DataInterface
+final class BirthDate implements DataInterface
 {
 
     /**
@@ -32,56 +32,22 @@ final class BirthDate implements DataFactoryInterface, DataInterface
     private $qc;
 
     /**
-     * {@inheritDoc}
+     * Constructs a new BirthDate object.
+     *
+     * @param array $data
+     *   The data to store.
      */
-    public static function fromData(array $data): DataInterface
+    public function __construct(array $data)
     {
-        $required_values = ['source', 'birthdate', 'qc'];
-        foreach ($required_values as $required_value) {
-            if (!in_array($required_value, array_keys($data))) {
-                throw new MissingRequiredDataValueException($required_value);
+        foreach (['source', 'birthdate', 'qc'] as $required_property) {
+            if (!isset($data[$required_property])) {
+                throw new MissingRequiredDataValueException($required_property);
             }
         }
 
-        $instance = new static();
-        $instance->setSource($data['source']);
-        $instance->setBirthDate($data['birthdate']);
-        $instance->setQc($data['qc']);
-
-        return $instance;
-    }
-
-    /**
-     * Sets source value.
-     *
-     * @param string $source
-     *   The source value.
-     */
-    private function setSource(string $source): void
-    {
-        $this->source = $source;
-    }
-
-    /**
-     * Sets birth date.
-     *
-     * @param string $birthDate
-     *   The formatted birth date.
-     */
-    private function setBirthDate(string $birthDate): void
-    {
-        $this->birthDate = $birthDate;
-    }
-
-    /**
-     * Sets quality code.
-     *
-     * @param string $qc
-     *   The email quality code.
-     */
-    private function setQc(string $qc): void
-    {
-        $this->qc = $qc;
+        $this->source = $data['source'];
+        $this->birthDate = $data['birthdate'];
+        $this->qc = $data['qc'];
     }
 
     /**

@@ -51,7 +51,7 @@ final class ResultItemsTest extends TestCase
      */
     protected function createMockData(string $content): DataInterface
     {
-        return MockData::fromData(['content' => $content]);
+        return new MockData(['content' => $content]);
     }
 
 }

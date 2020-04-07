@@ -7,7 +7,7 @@ use Niklan\DaData\Exception\MissingRequiredDataValueException;
 /**
  * Value object for store vehicle.
  */
-final class Vehicle implements DataFactoryInterface, DataInterface
+final class Vehicle implements DataInterface
 {
 
     /**
@@ -46,69 +46,24 @@ final class Vehicle implements DataFactoryInterface, DataInterface
     private $qc;
 
     /**
-     * {@inheritDoc}
+     * Constructs a new Vehicle object.
+     *
+     * @param array $data
+     *   The data to store.
      */
-    public static function fromData(array $data): DataInterface
+    public function __construct(array $data)
     {
-        $required_values = ['source', 'result', 'brand', 'model', 'qc'];
-        foreach ($required_values as $required_value) {
-            if (!in_array($required_value, array_keys($data))) {
-                throw new MissingRequiredDataValueException($required_value);
+        foreach (['source', 'result', 'brand', 'model', 'qc'] as $required_property) {
+            if (!isset($data[$required_property])) {
+                throw new MissingRequiredDataValueException($required_property);
             }
         }
 
-        $instance = new static();
-        $instance->setSource($data['source']);
-        $instance->setResult($data['result']);
-        $instance->setBrand($data['brand']);
-        $instance->setModel($data['model']);
-        $instance->setQc($data['qc']);
-
-        return $instance;
-    }
-
-    /**
-     * Sets source value.
-     *
-     * @param string $source
-     *   The source value.
-     */
-    private function setSource(string $source): void
-    {
-        $this->source = $source;
-    }
-
-    /**
-     * Sets result.
-     *
-     * @param string $result
-     *   The formatted vehicle name.
-     */
-    private function setResult(string $result): void
-    {
-        $this->result = $result;
-    }
-
-    /**
-     * Sets vehicle brand.
-     *
-     * @param string $brand
-     *   The formatted vehicle brand.
-     */
-    private function setBrand(string $brand): void
-    {
-        $this->brand = $brand;
-    }
-
-    /**
-     * Sets quality code.
-     *
-     * @param string $qc
-     *   The email quality code.
-     */
-    private function setQc(string $qc): void
-    {
-        $this->qc = $qc;
+        $this->source = $data['source'];
+        $this->result = $data['result'];
+        $this->brand = $data['brand'];
+        $this->model = $data['model'];
+        $this->qc = $data['qc'];
     }
 
     /**
@@ -164,17 +119,6 @@ final class Vehicle implements DataFactoryInterface, DataInterface
     public function getModel(): string
     {
         return $this->model;
-    }
-
-    /**
-     * Sets vehicle model.
-     *
-     * @param string $model
-     *   The formatted model name.
-     */
-    private function setModel(string $model): void
-    {
-        $this->model = $model;
     }
 
 }

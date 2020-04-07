@@ -7,7 +7,7 @@ use Exception;
 /**
  * Provides exception for missing required data value.
  */
-final class MissingRequiredDataValueException extends Exception
+final class MissingRequiredDataValueException extends \InvalidArgumentException
 {
 
     /**
@@ -18,7 +18,7 @@ final class MissingRequiredDataValueException extends Exception
      */
     public function __construct(string $missing_value)
     {
-        $message = sprintf("The required '%s' value is missing.", $missing_value);
+        $message = sprintf("Missing required property %s.", $missing_value);
         parent::__construct($message);
     }
 

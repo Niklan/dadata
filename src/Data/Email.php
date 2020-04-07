@@ -6,9 +6,9 @@ use InvalidArgumentException;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
 
 /**
- * Provides value object for standardized email.
+ * Value object for standardized email.
  */
-final class Email implements DataInterface, DataFactoryInterface
+final class Email implements DataInterface
 {
 
     /**
@@ -86,26 +86,36 @@ final class Email implements DataInterface, DataFactoryInterface
     private $qc;
 
     /**
-     * {@inheritdoc}
+     * Constructs a new Email object.
+     *
+     * @param array $data
+     *   The data to store.
      */
-    public static function fromData(array $data): DataInterface
+    public function __construct(array $data)
     {
-        $required_values = ['source', 'email', 'local', 'domain', 'type', 'qc'];
-        foreach ($required_values as $required_value) {
-            if (!in_array($required_value, array_keys($data))) {
-                throw new MissingRequiredDataValueException($required_value);
+        foreach (['source', 'email', 'local', 'domain', 'type', 'qc'] as $required_property) {
+            if (!isset($data[$required_property])) {
+                throw new MissingRequiredDataValueException($required_property);
             }
         }
 
-        $instance = new static();
-        $instance->setSource($data['source']);
-        $instance->setEmail($data['email']);
-        $instance->setLocal($data['local']);
-        $instance->setDomain($data['domain']);
-        $instance->setType($data['type']);
-        $instance->setQc($data['qc']);
+        $allowed_types = [
+            self::TYPE_CORPORATE,
+            self::TYPE_PERSONAL,
+            self::TYPE_DISPOSABLE,
+            self::TYPE_ROLE,
+        ];
 
-        return $instance;
+        if (!in_array($data['type'], $allowed_types)) {
+            throw new InvalidArgumentException(sprintf("The %s email type is not allowed value.", $data['type']));
+        }
+        $this->type = $data['type'];
+
+        $this->source = $data['source'];
+        $this->email = $data['email'];
+        $this->local = $data['local'];
+        $this->domain = $data['domain'];
+        $this->qc = $data['qc'];
     }
 
     /**
@@ -120,17 +130,6 @@ final class Email implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets email source.
-     *
-     * @param string $source
-     *   The email source.
-     */
-    private function setSource(string $source): void
-    {
-        $this->source = $source;
-    }
-
-    /**
      * Gets email.
      *
      * @return string
@@ -139,17 +138,6 @@ final class Email implements DataInterface, DataFactoryInterface
     public function getEmail(): string
     {
         return $this->email;
-    }
-
-    /**
-     * Sets email.
-     *
-     * @param string $email
-     *   The formatted email address.
-     */
-    private function setEmail(string $email): void
-    {
-        $this->email = $email;
     }
 
     /**
@@ -164,17 +152,6 @@ final class Email implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets local email name.
-     *
-     * @param string $local
-     *   The email local name.
-     */
-    private function setLocal(string $local): void
-    {
-        $this->local = $local;
-    }
-
-    /**
      * Gets domain.
      *
      * @return string
@@ -183,17 +160,6 @@ final class Email implements DataInterface, DataFactoryInterface
     public function getDomain(): string
     {
         return $this->domain;
-    }
-
-    /**
-     * Sets email domain.
-     *
-     * @param string $domain
-     *   The email domain.
-     */
-    private function setDomain(string $domain): void
-    {
-        $this->domain = $domain;
     }
 
     /**
@@ -208,28 +174,6 @@ final class Email implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets email type.
-     *
-     * @param string $type
-     *   The email type.
-     */
-    public function setType(string $type): void
-    {
-        $allowed_types = [
-            self::TYPE_CORPORATE,
-            self::TYPE_PERSONAL,
-            self::TYPE_DISPOSABLE,
-            self::TYPE_ROLE,
-        ];
-
-        if (!in_array($type, $allowed_types)) {
-            throw new InvalidArgumentException(sprintf("The %s email type is not allowed value.", $type));
-        }
-
-        $this->type = $type;
-    }
-
-    /**
      * Gets quality code.
      *
      * @return string
@@ -238,17 +182,6 @@ final class Email implements DataInterface, DataFactoryInterface
     public function getQc(): string
     {
         return $this->qc;
-    }
-
-    /**
-     * Sets quality code.
-     *
-     * @param string $qc
-     *   The email quality code.
-     */
-    private function setQc(string $qc): void
-    {
-        $this->qc = $qc;
     }
 
 }

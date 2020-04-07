@@ -6,9 +6,9 @@ use InvalidArgumentException;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
 
 /**
- * Provides value object for standardized email.
+ * Value object for standardized email.
  */
-final class Phone implements DataInterface, DataFactoryInterface
+final class Phone implements DataInterface
 {
 
     /**
@@ -169,9 +169,12 @@ final class Phone implements DataInterface, DataFactoryInterface
     private $qc;
 
     /**
-     * {@inheritdoc}
+     * Constructs a new Passport object.
+     *
+     * @param array $data
+     *   The data to store.
      */
-    public static function fromData(array $data): DataInterface
+    public function __construct(array $data)
     {
         $required_values = [
             'source',
@@ -189,29 +192,38 @@ final class Phone implements DataInterface, DataFactoryInterface
             'qc_conflict',
             'qc',
         ];
-        foreach ($required_values as $required_value) {
-            if (!in_array($required_value, array_keys($data))) {
-                throw new MissingRequiredDataValueException($required_value);
+        foreach ($required_values as $required_property) {
+            if (!isset($data[$required_property])) {
+                throw new MissingRequiredDataValueException($required_property);
             }
         }
 
-        $instance = new static();
-        $instance->setSource($data['source']);
-        $instance->setType($data['type']);
-        $instance->setPhone($data['phone']);
-        $instance->setCountryCode($data['country_code']);
-        $instance->setCityCode($data['city_code']);
-        $instance->setNumber($data['number']);
-        $instance->setExtension($data['extension']);
-        $instance->setProvider($data['provider']);
-        $instance->setCountry($data['country']);
-        $instance->setRegion($data['region']);
-        $instance->setCity($data['city']);
-        $instance->setTimezone($data['timezone']);
-        $instance->setQcConflict($data['qc_conflict']);
-        $instance->setQc($data['qc']);
+        $allowed_values = [
+            self::TYPE_MOBILE,
+            self::TYPE_STATIONARY,
+            self::TYPE_DIRECT_MOBILE,
+            self::TYPE_CALL_CENTER,
+            self::TYPE_UNKNOWN,
+        ];
+        if (!in_array($data['type'], $allowed_values)) {
+            throw new InvalidArgumentException(sprintf('The %s is not allowed phone type.', $data['type']));
+        }
+        $this->type = $data['type'];
 
-        return $instance;
+        $this->source = $data['source'];
+        $this->phone = $data['phone'];
+        $this->countryCode = $data['country_code'];
+        $this->cityCode = $data['city_code'];
+        $this->number = $data['number'];
+        $this->extension = $data['extension'];
+        $this->number = $data['number'];
+        $this->provider = $data['provider'];
+        $this->country = $data['country'];
+        $this->region = $data['region'];
+        $this->city = $data['city'];
+        $this->timezone = $data['timezone'];
+        $this->qcConflict = $data['qc_conflict'];
+        $this->qc = $data['qc'];
     }
 
     /**
@@ -226,17 +238,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets source value.
-     *
-     * @param string $source
-     *   The source value.
-     */
-    private function setSource(string $source): void
-    {
-        $this->source = $source;
-    }
-
-    /**
      * Gets phone type.
      *
      * @return string
@@ -245,28 +246,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     public function getType(): string
     {
         return $this->type;
-    }
-
-    /**
-     * Sets phone type.
-     *
-     * @param string $type
-     *   The phone type.
-     */
-    private function setType(string $type): void
-    {
-        $allowed_values = [
-            self::TYPE_MOBILE,
-            self::TYPE_STATIONARY,
-            self::TYPE_DIRECT_MOBILE,
-            self::TYPE_CALL_CENTER,
-            self::TYPE_UNKNOWN,
-        ];
-        if (!in_array($type, $allowed_values)) {
-            throw new InvalidArgumentException(sprintf('The %s is not allowed phone type.', $type));
-        }
-
-        $this->type = $type;
     }
 
     /**
@@ -281,17 +260,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets phone number.
-     *
-     * @param string $phone
-     *   The standardized phone number.
-     */
-    private function setPhone(string $phone): void
-    {
-        $this->phone = $phone;
-    }
-
-    /**
      * Get country code.
      *
      * @return int
@@ -300,17 +268,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     public function getCountryCode(): int
     {
         return $this->countryCode;
-    }
-
-    /**
-     * Sets country code.
-     *
-     * @param int $countryCode
-     *   The country code for phone number.
-     */
-    private function setCountryCode(int $countryCode): void
-    {
-        $this->countryCode = $countryCode;
     }
 
     /**
@@ -325,17 +282,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets city code.
-     *
-     * @param int $cityCode
-     *   The city code for phone number.
-     */
-    public function setCityCode(int $cityCode): void
-    {
-        $this->cityCode = $cityCode;
-    }
-
-    /**
      * Gets phone number.
      *
      * @return int
@@ -344,17 +290,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     public function getNumber(): int
     {
         return $this->number;
-    }
-
-    /**
-     * Sets phone number.
-     *
-     * @param int $number
-     *   The phone number.
-     */
-    private function setNumber(int $number): void
-    {
-        $this->number = $number;
     }
 
     /**
@@ -369,17 +304,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets extension number.
-     *
-     * @param int $extension
-     *   The phone extension.
-     */
-    private function setExtension(int $extension): void
-    {
-        $this->extension = $extension;
-    }
-
-    /**
      * Gets provider.
      *
      * @return string
@@ -388,17 +312,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     public function getProvider(): string
     {
         return $this->provider;
-    }
-
-    /**
-     * Sets provider.
-     *
-     * @param string $provider
-     *   The mobile operator name.
-     */
-    private function setProvider(string $provider): void
-    {
-        $this->provider = $provider;
     }
 
     /**
@@ -413,17 +326,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets phone country name.
-     *
-     * @param string $country
-     *   The country name.
-     */
-    private function setCountry(string $country): void
-    {
-        $this->country = $country;
-    }
-
-    /**
      * Gets phone region name.
      *
      * @return string
@@ -432,17 +334,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     public function getRegion(): string
     {
         return $this->region;
-    }
-
-    /**
-     * Sets phone region name.
-     *
-     * @param string $region
-     *   The region name.
-     */
-    private function setRegion(string $region): void
-    {
-        $this->region = $region;
     }
 
     /**
@@ -457,17 +348,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets phone city assigment.
-     *
-     * @param string $city
-     *   The city name.
-     */
-    private function setCity(string $city): void
-    {
-        $this->city = $city;
-    }
-
-    /**
      * Gets phone city or country timezone.
      *
      * @return string
@@ -476,17 +356,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     public function getTimezone(): string
     {
         return $this->timezone;
-    }
-
-    /**
-     * Sets phone city or country timezone.
-     *
-     * @param string $timezone
-     *   The UTC timezone.
-     */
-    private function setTimezone(string $timezone): void
-    {
-        $this->timezone = $timezone;
     }
 
     /**
@@ -501,17 +370,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     }
 
     /**
-     * Sets phone quality code conflict.
-     *
-     * @param int $qcConflict
-     *   The quality code.
-     */
-    private function setQcConflict(int $qcConflict): void
-    {
-        $this->qcConflict = $qcConflict;
-    }
-
-    /**
      * Gets phone quality code.
      *
      * @return int
@@ -520,17 +378,6 @@ final class Phone implements DataInterface, DataFactoryInterface
     public function getQc(): int
     {
         return $this->qc;
-    }
-
-    /**
-     * Sets phone quality code.
-     *
-     * @param int $qc
-     *   The quality code.
-     */
-    public function setQc(int $qc): void
-    {
-        $this->qc = $qc;
     }
 
 }

@@ -2,13 +2,12 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\DataFactoryInterface;
 use Niklan\DaData\Data\DataInterface;
 
 /**
- * Provides value object for testing thigs which required DataInterface objects which can have different methods.
+ * Provides value object for testing this which required DataInterface objects which can have different methods.
  */
-final class MockData implements DataInterface, DataFactoryInterface
+final class MockData implements DataInterface
 {
 
     /**
@@ -19,13 +18,14 @@ final class MockData implements DataInterface, DataFactoryInterface
     protected $content;
 
     /**
-     * {@inheritDoc}
+     * Constructs a new MockData object.
+     *
+     * @param array $data
+     *   The data to store.
      */
-    public static function fromData(array $data): DataInterface
+    public function __construct(array $data)
     {
-        $instance = new static();
-        $instance->content = $data['content'];
-        return $instance;
+        $this->content = $data['content'];
     }
 
     /**

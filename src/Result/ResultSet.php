@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Result;
 
-use Niklan\DaData\Data\DataFactoryInterface;
+use Niklan\DaData\Data\DataInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -44,16 +44,15 @@ final class ResultSet
      *
      * @param ResponseInterface $response
      *   The response from API.
-     * @param string $data_factory
-     *   The data factory class for result values. Must implement
-     *   DataFactoryInterface.
+     * @param string $value_object_class
+     *   The value object class for result values.
      *
      * @return ResultSet
      *   The instance with results.
      */
-    public static function createFromResponse(ResponseInterface $response, string $data_factory): ResultSet
+    public static function createFromResponse(ResponseInterface $response, string $value_object_class): ResultSet
     {
-        assert(is_subclass_of($data_factory, DataFactoryInterface::class));
+        assert(is_subclass_of($value_object_class, DataInterface::class));
         $instance = new static();
         $instance->responseStatusCode = $response->getStatusCode();
         $instance->responseReasonPhrase = $response->getReasonPhrase();
@@ -61,7 +60,7 @@ final class ResultSet
         $data = json_decode($instance->responseBodyContent, true);
         $instance->resultItems = new ResultItems();
         foreach ($data as $datum) {
-            $instance->resultItems->add($data_factory::fromData($datum));
+            $instance->resultItems->add(new $value_object_class($datum));
         }
         return $instance;
     }
