@@ -20,20 +20,8 @@ final class PhoneCleaner extends CleanerRequestBase
     protected $endpoint = '/api/v1/clean/phone';
 
     /**
-     * Clean provided phone.
-     *
-     * @param array $phones
-     *   An array with phones to clean.
-     *
-     * @return ResultSet
-     *   The results.
-     *
-     * @throws Exception
+     * {@inheritdoc}
      */
-    public function clean(array $phones)
-    {
-        $response = $this->sendRequest($phones);
-        return ResultSet::createFromResponse($response, Phone::class);
-    }
+    protected $dataClass = Phone::class;
 
 }
