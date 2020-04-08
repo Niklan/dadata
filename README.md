@@ -2,6 +2,18 @@
 
 **Work In Progress, not ready for production use.**
 
+## Implemented API
+
+- [ ] [Cleaner](https://dadata.ru/api/clean/)
+  - [x] [Address](https://dadata.ru/api/clean/address/)
+  - [x] [Email](https://dadata.ru/api/clean/email/)
+  - [x] [Phone](https://dadata.ru/api/clean/phone/)
+  - [x] [Birth date](https://dadata.ru/api/clean/birthdate/)
+  - [x] [Passport](https://dadata.ru/api/clean/passport/)
+  - [x] [Vehicle](https://dadata.ru/api/clean/vehicle/)
+  - [x] [Name](https://dadata.ru/api/clean/name/)
+  - [ ] [Complex](https://dadata.ru/api/clean/record/)
+
 ## Simple example
 
 ```php

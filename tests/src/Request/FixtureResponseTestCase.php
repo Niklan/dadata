@@ -21,7 +21,7 @@ abstract class FixtureResponseTestCase extends TestCase
      *
      * @var string
      */
-    public static $fixture;
+    public $fixture;
 
     /**
      * The auth credentials for an API.
@@ -52,7 +52,7 @@ abstract class FixtureResponseTestCase extends TestCase
         parent::setUp();
         $this->daDataAuth = new Auth('dadata-token', 'dadata-secret');
         $this->httpClient = new MockHttpClient();
-        $fixture_content = file_get_contents(static::$fixture);
+        $fixture_content = file_get_contents($this->fixture);
         $response = $this->prophesizeResponse(200, 'Success.', $fixture_content);
         $this->httpClient->setDefaultResponse($response);
         $this->daDataClient = new Client($this->getHttpClient(), $this->getDaDataAuth());

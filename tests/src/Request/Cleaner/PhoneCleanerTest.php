@@ -16,7 +16,7 @@ final class PhoneCleanerTest extends FixtureResponseTestCase
     /**
      * {@inheritdoc}
      */
-    public static $fixture = __DIR__ . '/../../../fixtures/clean-phone-response.json';
+    public $fixture = __DIR__ . '/../../../fixtures/clean-phone-response.json';
 
     /**
      * Tests sending request.
@@ -25,8 +25,8 @@ final class PhoneCleanerTest extends FixtureResponseTestCase
      */
     public function testRequest(): void
     {
-        $address_cleaner = new PhoneCleaner($this->getDaDataClient());
-        $result_set = $address_cleaner->clean(['раб 846)231.60.14 *139']);
+        $cleaner = new PhoneCleaner($this->getDaDataClient());
+        $result_set = $cleaner->clean(['раб 846)231.60.14 *139']);
         $this->assertSame(200, $result_set->getResponseStatusCode());
         $this->assertSame(1, $result_set->getResultItems()->count());
         $this->assertSame('раб 846)231.60.14 *139', $result_set->getResultItems()->first()->getSource());

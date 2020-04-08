@@ -16,7 +16,7 @@ final class EmailCleanerTest extends FixtureResponseTestCase
     /**
      * {@inheritdoc}
      */
-    public static $fixture = __DIR__ . '/../../../fixtures/clean-email-response.json';
+    public $fixture = __DIR__ . '/../../../fixtures/clean-email-response.json';
 
     /**
      * Tests sending request.
@@ -25,8 +25,8 @@ final class EmailCleanerTest extends FixtureResponseTestCase
      */
     public function testRequest(): void
     {
-        $address_cleaner = new EmailCleaner($this->getDaDataClient());
-        $result_set = $address_cleaner->clean(['serega@yandex/ru']);
+        $cleaner = new EmailCleaner($this->getDaDataClient());
+        $result_set = $cleaner->clean(['serega@yandex/ru']);
         $this->assertSame(200, $result_set->getResponseStatusCode());
         $this->assertSame(1, $result_set->getResultItems()->count());
         $this->assertSame('serega@yandex/ru', $result_set->getResultItems()->first()->getSource());
