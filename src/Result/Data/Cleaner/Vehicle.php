@@ -1,13 +1,14 @@
 <?php
 
-namespace Niklan\DaData\Data;
+namespace Niklan\DaData\Result\Data\Cleaner;
 
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\DataItemBase;
 
 /**
  * Value object for store vehicle.
  */
-final class Vehicle implements DataInterface
+final class Vehicle extends DataItemBase
 {
 
     /**

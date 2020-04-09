@@ -2,9 +2,9 @@
 
 namespace Niklan\DaData\Tests\Result;
 
-use Niklan\DaData\Data\DataInterface;
+use Niklan\DaData\Result\Data\DataItemInterface;
 use Niklan\DaData\Result\ResultItems;
-use Niklan\DaData\Tests\Data\MockData;
+use Niklan\DaData\Tests\Data\MockDataItem;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -46,12 +46,12 @@ final class ResultItemsTest extends TestCase
      * @param string $content
      *   The content for ->getContent() method call.
      *
-     * @return DataInterface
+     * @return DataItemInterface
      *   The data mocked object.
      */
-    protected function createMockData(string $content): DataInterface
+    protected function createMockData(string $content): DataItemInterface
     {
-        return new MockData(['content' => $content]);
+        return new MockDataItem(['content' => $content]);
     }
 
 }

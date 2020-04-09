@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
-use Niklan\DaData\Data\Email;
+use Niklan\DaData\Result\Data\Cleaner\Email;
 
 /**
  * Provides email clean request.

@@ -2,13 +2,13 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\BirthDate;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\Cleaner\BirthDate;
 
 /**
  * Provides test for birth date value object.
  *
- * @coversDefaultClass \Niklan\DaData\Data\BirthDate
+ * @coversDefaultClass \Niklan\DaData\Result\Data\Cleaner\BirthDate
  */
 final class BirthDateTest extends DataTestCase
 {

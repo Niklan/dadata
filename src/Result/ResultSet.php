@@ -2,7 +2,8 @@
 
 namespace Niklan\DaData\Result;
 
-use Niklan\DaData\Data\DataInterface;
+use Niklan\DaData\Result\Data\DataItemInterface;
+use Niklan\DaData\Result\ResultItems;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -52,7 +53,7 @@ final class ResultSet
      */
     public static function createFromResponse(ResponseInterface $response, string $value_object_class): ResultSet
     {
-        assert(is_subclass_of($value_object_class, DataInterface::class));
+        assert(is_subclass_of($value_object_class, DataItemInterface::class));
         $instance = new static();
         $instance->responseStatusCode = $response->getStatusCode();
         $instance->responseReasonPhrase = $response->getReasonPhrase();

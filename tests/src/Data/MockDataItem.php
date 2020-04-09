@@ -2,12 +2,12 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\DataInterface;
+use Niklan\DaData\Result\Data\DataItemBase;
 
 /**
  * Provides value object for testing this which required DataInterface objects which can have different methods.
  */
-final class MockData implements DataInterface
+final class MockDataItem extends DataItemBase
 {
 
     /**

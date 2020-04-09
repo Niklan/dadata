@@ -1,13 +1,14 @@
 <?php
 
-namespace Niklan\DaData\Data;
+namespace Niklan\DaData\Result\Data\Cleaner;
 
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\DataItemBase;
 
 /**
  * Value object for passport information.
  */
-final class Passport implements DataInterface
+final class Passport extends DataItemBase
 {
 
     /**

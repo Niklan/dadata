@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
-use Niklan\DaData\Data\BirthDate;
+use Niklan\DaData\Result\Data\Cleaner\BirthDate;
 
 /**
  * Provides birth date clean request.

@@ -2,13 +2,13 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\Phone;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\Cleaner\Phone;
 
 /**
  * Provides test for phone value object.
  *
- * @coversDefaultClass \Niklan\DaData\Data\Phone
+ * @coversDefaultClass \Niklan\DaData\Result\Data\Cleaner\Phone
  */
 final class PhoneTest extends DataTestCase
 {

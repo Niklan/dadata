@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
-use Niklan\DaData\Data\Vehicle;
+use Niklan\DaData\Result\Data\Cleaner\Vehicle;
 
 /**
  * Provides vehicle clean request.

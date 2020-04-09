@@ -2,9 +2,7 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
-use Http\Client\Exception;
-use Niklan\DaData\Data\Phone;
-use Niklan\DaData\Result\ResultSet;
+use Niklan\DaData\Result\Data\Cleaner\Phone;
 
 /**
  * Provides phone clean request.

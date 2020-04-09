@@ -6,7 +6,7 @@ use ArrayIterator;
 use Countable;
 use InvalidArgumentException;
 use IteratorAggregate;
-use Niklan\DaData\Data\DataInterface;
+use Niklan\DaData\Result\Data\DataItemInterface;
 
 /**
  * Value object for store and iterate thought result items.
@@ -17,7 +17,7 @@ final class ResultItems implements IteratorAggregate, Countable
     /**
      * The data items.
      *
-     * @var DataInterface[]
+     * @var DataItemInterface[]
      */
     private $items = [];
 
@@ -32,10 +32,10 @@ final class ResultItems implements IteratorAggregate, Countable
     /**
      * Returns first value from the list.
      *
-     * @return DataInterface|null
+     * @return DataItemInterface|null
      *   The data value object. NULL if there is no items.
      */
-    public function first(): ?DataInterface
+    public function first(): ?DataItemInterface
     {
         return $this->get(0);
     }
@@ -46,10 +46,10 @@ final class ResultItems implements IteratorAggregate, Countable
      * @param int $index
      *   Index of the item to return.
      *
-     * @return DataInterface|null
+     * @return DataItemInterface|null
      *   The item at the specified position, or NULL if no items exists at that position.
      */
-    public function get(int $index): ?DataInterface
+    public function get(int $index): ?DataItemInterface
     {
         if (!is_numeric($index)) {
             throw new InvalidArgumentException('Unable to get a value with non-numeric delta in a list.');
@@ -61,12 +61,12 @@ final class ResultItems implements IteratorAggregate, Countable
     /**
      * Adds specified data in the list.
      *
-     * @param DataInterface $data
+     * @param DataItemInterface $data
      *   The item element.
      *
      * @return $this
      */
-    public function add(DataInterface $data): ResultItems
+    public function add(DataItemInterface $data): ResultItems
     {
         $this->items[] = $data;
         return $this;

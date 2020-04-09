@@ -2,13 +2,13 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\Vehicle;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\Cleaner\Vehicle;
 
 /**
  * Provides test for vehicle value object.
  *
- * @coversDefaultClass \Niklan\DaData\Data\Vehicle
+ * @coversDefaultClass \Niklan\DaData\Result\Data\Cleaner\Vehicle
  */
 final class VehicleTest extends DataTestCase
 {

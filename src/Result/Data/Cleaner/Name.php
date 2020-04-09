@@ -1,14 +1,15 @@
 <?php
 
-namespace Niklan\DaData\Data;
+namespace Niklan\DaData\Result\Data\Cleaner;
 
 use InvalidArgumentException;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\DataItemBase;
 
 /**
  * Value object for name.
  */
-final class Name implements DataInterface
+final class Name extends DataItemBase
 {
 
     /**

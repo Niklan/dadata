@@ -3,13 +3,13 @@
 namespace Niklan\DaData\Tests\Data;
 
 use InvalidArgumentException;
-use Niklan\DaData\Data\Name;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\Cleaner\Name;
 
 /**
  * Provides test for vehicle value object.
  *
- * @coversDefaultClass \Niklan\DaData\Data\Name
+ * @coversDefaultClass \Niklan\DaData\Result\Data\Cleaner\Name
  */
 final class NameTest extends DataTestCase
 {

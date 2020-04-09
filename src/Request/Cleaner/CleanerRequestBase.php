@@ -3,7 +3,6 @@
 namespace Niklan\DaData\Request\Cleaner;
 
 use Http\Client\Exception;
-use Niklan\DaData\Data\Email;
 use Niklan\DaData\Request\RequestBase;
 use Niklan\DaData\Result\ResultSet;
 

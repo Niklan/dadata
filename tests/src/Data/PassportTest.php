@@ -2,13 +2,13 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\Passport;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\Cleaner\Passport;
 
 /**
  * Provides test for passport value object.
  *
- * @coversDefaultClass \Niklan\DaData\Data\Passport
+ * @coversDefaultClass \Niklan\DaData\Result\Data\Cleaner\Passport
  */
 final class PassportTest extends DataTestCase
 {

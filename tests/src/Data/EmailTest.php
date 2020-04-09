@@ -2,13 +2,13 @@
 
 namespace Niklan\DaData\Tests\Data;
 
-use Niklan\DaData\Data\Email;
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
+use Niklan\DaData\Result\Data\Cleaner\Email;
 
 /**
  * Provides test for email value object.
  *
- * @coversDefaultClass \Niklan\DaData\Data\Email
+ * @coversDefaultClass \Niklan\DaData\Result\Data\Cleaner\Email
  */
 final class EmailTest extends DataTestCase
 {

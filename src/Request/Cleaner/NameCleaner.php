@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
-use Niklan\DaData\Data\Name;
+use Niklan\DaData\Result\Data\Cleaner\Name;
 
 /**
  * Provides name clean request.

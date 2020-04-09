@@ -2,7 +2,7 @@
 
 namespace Niklan\DaData\Request\Cleaner;
 
-use Niklan\DaData\Data\Passport;
+use Niklan\DaData\Result\Data\Cleaner\Passport;
 
 /**
  * Provides passport clean request.
