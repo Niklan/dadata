@@ -13,6 +13,11 @@ final class Email extends DataItemBase
 {
 
     /**
+     * {@inheritDoc}
+     */
+    protected $dataType = 'cleaner_email';
+
+    /**
      * Represents the 'PERSONAL' email type.
      *
      * This type is reference for emails with common email services '@mail.ru',

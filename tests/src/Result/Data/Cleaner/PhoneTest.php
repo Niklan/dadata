@@ -1,9 +1,10 @@
 <?php
 
-namespace Niklan\DaData\Tests\Data;
+namespace Niklan\DaData\Tests\Result\Data\Cleaner;
 
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
 use Niklan\DaData\Result\Data\Cleaner\Phone;
+use Niklan\DaData\Tests\Result\Data\DataTestCase;
 
 /**
  * Provides test for phone value object.
@@ -16,7 +17,7 @@ final class PhoneTest extends DataTestCase
     /**
      * {@inheritdoc}
      */
-    protected $fixture = __DIR__ . '/../../fixtures/clean-phone-response.json';
+    protected $fixture = __DIR__ . '/../../../../fixtures/clean-phone-response.json';
 
     /**
      * Test value storage in value object.

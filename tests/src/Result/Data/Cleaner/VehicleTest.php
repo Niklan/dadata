@@ -1,9 +1,10 @@
 <?php
 
-namespace Niklan\DaData\Tests\Data;
+namespace Niklan\DaData\Tests\Result\Data\Cleaner;
 
 use Niklan\DaData\Exception\MissingRequiredDataValueException;
 use Niklan\DaData\Result\Data\Cleaner\Vehicle;
+use Niklan\DaData\Tests\Result\Data\DataTestCase;
 
 /**
  * Provides test for vehicle value object.
@@ -16,7 +17,7 @@ final class VehicleTest extends DataTestCase
     /**
      * {@inheritdoc}
      */
-    protected $fixture = __DIR__ . '/../../fixtures/clean-vehicle-response.json';
+    protected $fixture = __DIR__ . '/../../../../fixtures/clean-vehicle-response.json';
 
     /**
      * Test value storage in value object.

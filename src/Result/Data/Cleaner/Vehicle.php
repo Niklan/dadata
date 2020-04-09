@@ -12,6 +12,11 @@ final class Vehicle extends DataItemBase
 {
 
     /**
+     * {@inheritDoc}
+     */
+    protected $dataType = 'cleaner_vehicle';
+
+    /**
      * The source value.
      *
      * @var string

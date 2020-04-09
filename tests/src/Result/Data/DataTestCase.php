@@ -1,6 +1,6 @@
 <?php
 
-namespace Niklan\DaData\Tests\Data;
+namespace Niklan\DaData\Tests\Result\Data;
 
 use PHPUnit\Framework\TestCase;
 

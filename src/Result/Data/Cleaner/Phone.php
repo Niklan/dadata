@@ -13,6 +13,11 @@ final class Phone extends DataItemBase
 {
 
     /**
+     * {@inheritDoc}
+     */
+    protected $dataType = 'cleaner_phone';
+
+    /**
      * Represents the 'Мобильный' phone type.
      *
      * This type is reference for mobile phone number.

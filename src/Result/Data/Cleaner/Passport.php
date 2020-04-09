@@ -12,6 +12,11 @@ final class Passport extends DataItemBase
 {
 
     /**
+     * {@inheritDoc}
+     */
+    protected $dataType = 'cleaner_passport';
+
+    /**
      * The source value.
      *
      * @var string

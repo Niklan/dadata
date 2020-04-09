@@ -13,6 +13,11 @@ final class Name extends DataItemBase
 {
 
     /**
+     * {@inheritDoc}
+     */
+    protected $dataType = 'cleaner_name';
+
+    /**
      * Represents 'male' gender.
      */
     public const GENDER_MALE = 'М';

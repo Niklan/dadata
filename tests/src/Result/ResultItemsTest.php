@@ -4,7 +4,7 @@ namespace Niklan\DaData\Tests\Result;
 
 use Niklan\DaData\Result\Data\DataItemInterface;
 use Niklan\DaData\Result\ResultItems;
-use Niklan\DaData\Tests\Data\MockDataItem;
+use Niklan\DaData\Tests\Result\Data\MockDataItem;
 use PHPUnit\Framework\TestCase;
 
 /**

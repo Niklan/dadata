@@ -12,6 +12,11 @@ final class BirthDate extends DataItemBase
 {
 
     /**
+     * {@inheritDoc}
+     */
+    protected $dataType = 'cleaner_birth_date';
+
+    /**
      * The source value.
      *
      * @var string
